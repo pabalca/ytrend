@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if page_title %}
+<h3>{{ page_title }}</h3>
+<hr>
+{% endif %}
+
+{% if stats %}
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" class="text-right">views</th>
+      <th scope="col" class="text-right">subs</th>
+      <th scope="col" class="text-right">videos</th>
+      <th scope="col" class="text-right">last</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for stat in stats %}
+    <tr>
+      <th scope="row"><a href="https://www.youtube.com/@{{ stat.channel }}">{{ stat.channel }}</a></th>
+      <td class="text-right">{{ '{0:,}'.format(stat.views | int) }}</td>
+      <td class="text-right">{{ '{0:,}'.format(stat.subs | int) }}</td>
+      <td class="text-right">{{ '{0:,}'.format(stat.videos | int) }}</td>
+      <td class="text-right">{{ stat.created_at.strftime('%d %b, %H:%M') }}</td>
+    </tr>
+  {% endfor %}
+  {% if total %}  
+    <tr>
+      <th scope="row">* TOTAL</th>
+      <td class="text-right">{{ '{0:,}'.format(total.views | int) }}</td>
+      <td class="text-right">{{ '{0:,}'.format(total.subs | int) }}</td>
+      <td class="text-right">{{ '{0:,}'.format(total.videos | int) }}</td>
+      <td class="text-right">-</td>
+    </tr>
+  {% endif %}
+  </tbody>
+</table>
+
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

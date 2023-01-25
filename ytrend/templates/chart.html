@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Trends</h3>
+<hr>
+<center>
+<canvas id="myChart" width="1000" height="300"></canvas>
+</center>
+
+{% endblock %}
+
+{% block scripts %}
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+          {% for item in labels %}
+              "{{item}}",
+          {% endfor %},
+      ],
+      datasets: [
+      {
+        label: '# views',
+        data: [
+            {% for item in views %}
+                "{{item}}",
+            {% endfor %},
+
+        ],
+        borderWidth: 1,
+        yAxisID: 'y',
+      },
+      {
+        label: '# subs',
+        data: [
+            {% for item in subs %}
+                "{{item}}",
+            {% endfor %},
+
+        ],
+        borderWidth: 1,
+        yAxisID: 'y1',
+      },
+
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+
+        // grid line settings
+        grid: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
+        },
+      },
+    }
+    }
+  });
+
+
+{% endblock %}

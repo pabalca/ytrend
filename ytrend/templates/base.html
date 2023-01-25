@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+    {% block title %}Stats{% endblock %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css' ) }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container bg-light">
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='plus.svg' ) }}" width="30" height="30" alt="">
+            Stats
+        </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('table') }}">today</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('raw') }}">all</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
+<main>
+    {% for message in get_flashed_messages() %}
+    <div class="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+{% block content %}{% endblock %}
+
+</main>
+
+<footer class="page-footer font-small blue pt-4">
+    <div class="container-fluid text-center text-md-left">
+        <small><p>&copy; 2022 by Pablo Alcala</p></small><br>
+    </div>
+</footer>
+</div>
+<script>
+{% block scripts %}{% endblock %}
+</script>
+</body>
+</html>
