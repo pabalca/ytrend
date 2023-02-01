@@ -2,12 +2,16 @@
 
 {% block content %}
 
-<h3>Trends</h3>
+<h4>Youtube stats of crypto "scammers".</h4>
 <hr>
 <center>
-<canvas id="myChart" width="1000" height="300"></canvas>
+<canvas id="myChart" width="1000" height="500"></canvas>
 </center>
+<hr>
+<p>This page monitors a bunch of youtube channels to gather information about how much retail interest there is in crypto. In my opinion, the people who watches these guys could be a signal of overextension or echo bubble market conditions. Use under your own responsability<p>
+<p>Data is being scraped since the 25th Jan 2023, probably need some time to run further experiments. Scrape runs hourly.</p>
 
+<a href="https://github.com/pabalca/ytrend">Source code</a>
 {% endblock %}
 
 {% block scripts %}
@@ -54,11 +58,15 @@
         type: 'linear',
         display: true,
         position: 'left',
+        min: 1200000000,
+        max: 1400000000,
       },
       y1: {
         type: 'linear',
         display: true,
         position: 'right',
+        min: 10000000,
+        max: 12000000,
 
         // grid line settings
         grid: {
